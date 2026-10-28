@@ -13,7 +13,7 @@
             margin: 0;
             padding: 0;
         }
-        /* Encabezado Principal con Logo a la Izquierda */
+        /* Encabezado Principal con Logo Adaptable */
         .header-wrapper {
             background-color: #1b2a38;
             width: 100%;
@@ -43,7 +43,6 @@
             flex-direction: column;
             text-align: left;
         }
-        
         .header-title {
             font-size: 26px;
             font-weight: bold;
@@ -173,7 +172,6 @@
         .card img:hover {
             transform: scale(1.05);
         }
-        /* Icono de Lupa flotante sobre la imagen */
         .zoom-icon {
             position: absolute;
             bottom: 10px;
@@ -241,7 +239,6 @@
             font-weight: bold;
             color: #e74c3c;
         }
-        /* Selector de cantidad en tarjeta */
         .card-qty-selector {
             display: flex;
             align-items: center;
@@ -268,7 +265,6 @@
             min-width: 15px;
             text-align: center;
         }
-
         .card-actions-row {
             display: flex;
             gap: 6px;
@@ -386,18 +382,15 @@
             align-items: center;
             gap: 10px;
         }
-        .cart-item-controls button {
-            background: #ddd;
+        .btn-remove {
+            background: #ff4d4d !important;
+            color: white;
             border: none;
             width: 25px;
             height: 25px;
             border-radius: 4px;
             cursor: pointer;
             font-weight: bold;
-        }
-        .btn-remove {
-            background: #ff4d4d !important;
-            color: white;
         }
         .modal-footer {
             border-top: 1px solid #eee;
@@ -427,6 +420,130 @@
         .btn-checkout:hover {
             background-color: #20ba5a;
         }
+
+        /* ZOOM DE IMAGEN */
+        .zoom-modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            padding-top: 50px;
+            left: 0; top: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .zoom-modal-content {
+            max-width: 90%;
+            max-height: 80vh;
+            border-radius: 8px;
+        }
+        .zoom-close {
+            position: absolute;
+            top: 20px; right: 35px;
+            color: #f1f1f1; font-size: 40px; font-weight: bold; cursor: pointer;
+        }
+        .zoom-caption {
+            margin: 15px; color: #ccc; text-align: center; font-size: 16px;
+        }
+
+        /* ADAPTACIÓN MÓVIL (TEXTO COMPLETO Y LOGO ADAPTABLE) */
+        @media (max-width: 600px) {
+            .header-container {
+                padding: 12px;
+                gap: 12px;
+            }
+            .header-logo {
+                max-width: 70px;
+            }
+            .header-title {
+                font-size: 18px;
+            }
+            .header-subtitle {
+                font-size: 12px;
+            }
+            .controls-section {
+                padding: 12px;
+                gap: 10px;
+            }
+            .search-input {
+                font-size: 13px;
+                padding: 10px 12px 10px 38px;
+            }
+            .btn-cuaderno {
+                padding: 8px 14px;
+                font-size: 13px;
+                width: 100%;
+                justify-content: center;
+            }
+            .category-btn {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+            .catalog-container {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 10px;
+                padding: 0 10px;
+                margin: 15px auto;
+            }
+            .image-container {
+                height: 140px;
+            }
+            .card-content {
+                padding: 10px;
+            }
+            .card-title {
+                font-size: 13px;
+                margin-bottom: 6px;
+            }
+            /* DESCRIPCIÓN COMPLETA EN MÓVIL SIN RECORTAR */
+            .card-description {
+                font-size: 11px;
+                margin-bottom: 10px;
+            }
+            .card-badge {
+                font-size: 9px;
+                padding: 2px 5px;
+            }
+            .stock-badge {
+                font-size: 10px;
+            }
+            .price {
+                font-size: 15px;
+            }
+            .card-qty-selector button {
+                padding: 2px 6px;
+                font-size: 12px;
+            }
+            .card-qty-selector span {
+                padding: 0 4px;
+                font-size: 12px;
+            }
+            .btn-add-cart, .btn-whatsapp {
+                padding: 6px 8px;
+                font-size: 11px;
+            }
+            .modal-content {
+                padding: 15px;
+                width: 95%;
+            }
+            .modal-header h2 {
+                font-size: 16px;
+            }
+            .cart-item-title {
+                font-size: 12px;
+            }
+            .cart-total {
+                font-size: 15px;
+            }
+            .btn-checkout {
+                padding: 8px 14px;
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+<body>
 
         /* MODAL DE LUPA / ZOOM DE IMAGEN */
         .zoom-modal {
