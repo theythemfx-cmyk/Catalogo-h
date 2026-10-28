@@ -139,6 +139,7 @@
             max-width: 1200px;
             margin: 25px auto;
             padding: 0 20px;
+            box-sizing: border-box;
         }
         .card {
             background: #fff;
@@ -327,6 +328,7 @@
             max-height: 80vh;
             display: flex;
             flex-direction: column;
+            box-sizing: border-box;
         }
         .modal-header {
             display: flex;
@@ -458,6 +460,104 @@
             text-align: center;
             font-size: 16px;
         }
+
+        /* ADAPTACIÓN MÓVIL (COMPACTO Y AJUSTADO) */
+        @media (max-width: 600px) {
+            .header-container {
+                padding: 12px;
+                gap: 12px;
+            }
+            .header-logo {
+                max-width: 75px;
+            }
+            .header-title {
+                font-size: 18px;
+            }
+            .header-subtitle {
+                font-size: 12px;
+            }
+            .controls-section {
+                padding: 12px;
+                gap: 10px;
+            }
+            .search-input {
+                font-size: 13px;
+                padding: 10px 12px 10px 38px;
+            }
+            .btn-cuaderno {
+                padding: 8px 14px;
+                font-size: 13px;
+                width: 100%;
+                justify-content: center;
+            }
+            .category-btn {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+            .catalog-container {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 10px;
+                padding: 0 10px;
+                margin: 15px auto;
+            }
+            .image-container {
+                height: 140px;
+            }
+            .card-content {
+                padding: 10px;
+            }
+            .card-title {
+                font-size: 13px;
+                margin-bottom: 6px;
+            }
+            .card-description {
+                font-size: 11px;
+                margin-bottom: 10px;
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+            .card-badge {
+                font-size: 9px;
+                padding: 2px 5px;
+            }
+            .stock-badge {
+                font-size: 10px;
+            }
+            .price {
+                font-size: 15px;
+            }
+            .card-qty-selector button {
+                padding: 2px 6px;
+                font-size: 12px;
+            }
+            .card-qty-selector span {
+                padding: 0 4px;
+                font-size: 12px;
+            }
+            .btn-add-cart, .btn-whatsapp {
+                padding: 6px 8px;
+                font-size: 11px;
+            }
+            .modal-content {
+                padding: 15px;
+                width: 95%;
+            }
+            .modal-header h2 {
+                font-size: 16px;
+            }
+            .cart-item-title {
+                font-size: 12px;
+            }
+            .cart-total {
+                font-size: 15px;
+            }
+            .btn-checkout {
+                padding: 8px 14px;
+                font-size: 13px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -465,7 +565,7 @@
     <!-- ENCABEZADO CON LOGO A LA IZQUIERDA -->
     <header class="header-wrapper">
         <div class="header-container">
-            <img src="img/logoparalasia.png" alt="They & Them Bazar Novedades" class="header-logo">
+            <img src="img/logo.png" alt="They & Them Bazar Novedades" class="header-logo">
             <div class="header-text-group">
                 <h1 class="header-title">They & Them Bazar Novedades</h1>
                 <p class="header-subtitle">Encuentra lo que buscas al mejor precio con productos de catálogo y más. ¡¡ANÍMATE!!</p>
