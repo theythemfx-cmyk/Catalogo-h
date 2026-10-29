@@ -716,7 +716,7 @@
             <img src="img/logoparalasia.png" alt="They & Them Bazar Novedades" class="header-logo" onerror="this.src='https://placehold.co/190x190/1b2a38/ffffff?text=Logo'">
             <div class="header-text-group">
                 <h1 class="header-title">They & Them Bazar Novedades</h1>
-                <p class="header-subtitle">Perfumería, cosmética y productos para el hogar de tus marcas favoritas. ¡Haz tu pedido desde casa!</p>
+                <p class="header-subtitle">Perfumes, cosméticos y productos para el hogar de tus marcas favoritas y más ¡Haz tu pedido desde casa!</p>
             </div>
         </div>
     </header>
@@ -735,7 +735,7 @@
                 <i class="fa-solid fa-truck-fast"></i>
                 <div>
                     <strong>Zonas de Entrega</strong>
-                    Guajaló, Valles del Sur, Quito y puntos de encuentro
+                    Quito, Centro, Norte, Valles y puntos de encuentro
                 </div>
             </div>
             <div class="info-item">
@@ -1110,6 +1110,71 @@
         window.onload = function() {
             renderizarCatalogo(productosData);
         };
+    // ==========================================
+// PANEL EMERGENTE PRIVADO (SOLO PARA TI - TECLA F4)
+// ==========================================
+function activarPanelAdministrador() {
+    // 1. Solicita la clave privada de acceso
+    let clave = prompt("Panel Privado Admin - Ingrese su clave secreta:");
+    if (clave !== "2026") {
+        alert("Clave incorrecta. Acceso denegado.");
+        return;
+    }
+
+    // 2. Elimina el panel anterior si ya estaba abierto en pantalla
+    if (document.getElementById("admin-panel-control")) {
+        document.getElementById("admin-panel-control").remove();
+    }
+
+    // 3. Crea la ventana flotante emergente en la esquina inferior derecha
+    let panelHTML = `
+        <div id="admin-panel-control" style="position: fixed; bottom: 20px; right: 20px; background: #1e293b; color: white; padding: 18px; border-radius: 12px; z-index: 9999; box-shadow: 0 10px 30px rgba(0,0,0,0.6); max-width: 320px; border: 2px solid #4f46e5; font-family: sans-serif;">
+            <h4 style="margin: 0 0 10px 0; font-size: 15px; color: #818cf8; border-bottom: 1px solid #334155; padding-bottom: 6px;">Panel Privado de Stock</h4>
+            
+            <label style="font-size: 12px; color: #94a3b8; display: block; margin-bottom: 6px;">Seleccionar Producto:</label>
+            <select id="admin-select-prod" style="width: 100%; margin-bottom: 12px; padding: 8px; background: #0f172a; color: white; border: 1px solid #334155; border-radius: 6px; font-size: 12px; outline: none;">
+                ${productosData.map((p, idx) => `<option value="${idx}">${p.name} (${p.disponible ? 'Disponible' : 'Agotado'})</option>`).join('')}
+            </select>
+            
+            <div style="display: flex; gap: 8px;">
+                <button onclick="cambiarEstadoStock(true)" style="flex: 1; background: #16a34a; color: white; border: none; padding: 8px; border-radius: 6px; font-weight: 600; cursor: pointer;">Disponible</button>
+                <button onclick="cambiarEstadoStock(false)" style="flex: 1; background: #dc2626; color: white; border: none; padding: 8px; border-radius: 6px; font-weight: 600; cursor: pointer;">Agotado</button>
+            </div>
+            
+            <button onclick="document.getElementById('admin-panel-control').remove()" style="width: 100%; margin-top: 10px; background: transparent; color: #94a3b8; border: none; cursor: pointer; font-size: 11px; text-decoration: underline;">Cerrar Panel</button>
+        </div>
+    `;
+    document.body.insertAdjacentHTML('beforeend', panelHTML);
+}
+
+// 4. Cambia el estado del producto y lo guarda localmente en tu equipo
+function cambiarEstadoStock(nuevoEstado) {
+    let selectEl = document.getElementById("admin-select-prod");
+    if (!selectEl) return;
+    
+    let index = selectEl.value;
+    productosData[index].disponible = nuevoEstado;
+    
+    // Guarda de forma persistente en la memoria local del navegador de tu dispositivo
+    let estadosGuardados = {};
+    productosData.forEach(p => { estadosGuardados[p.id] = p.disponible; });
+    localStorage.setItem('bazar_productos_stock', JSON.stringify(estadosGuardados));
+
+    // Refresca la vista del catálogo
+    filtrarProductos();
+    
+    // Actualiza el texto en la lista desplegable
+    selectEl.options[index].text = `${productosData[index].name} (${nuevoEstado ? 'Disponible' : 'Agotado'})`;
+    alert("¡Estado actualizado con éxito!");
+}
+
+// 5. Escucha la tecla F4 para activar la ventana privada
+document.addEventListener('keydown', function(e) {
+    if (e.key === "F4") {
+        e.preventDefault();
+        activarPanelAdministrador();
+    }
+});
     </script>
 </body>
 </html>
