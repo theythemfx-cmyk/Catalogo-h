@@ -735,7 +735,7 @@
                 <i class="fa-solid fa-truck-fast"></i>
                 <div>
                     <strong>Zonas de Entrega</strong>
-                    Quito, Centro, Norte, Valles y puntos de encuentro
+                    Quito, Centro, Norte, Valles y puntos de encuentro.
                 </div>
             </div>
             <div class="info-item">
@@ -756,9 +756,11 @@
                 <span class="brand-tag">Ésika</span>
                 <span class="brand-tag">L'Bel</span>
                 <span class="brand-tag">Avon</span>
-                <span class="brand-tag">Saison</span>
-                <span class="brand-tag">Booz</span>
+                <span class="brand-tag">Cyzone</span>
                 <span class="brand-tag">Boom</span>
+                <span class="brand-tag">Accesorios</span>
+                <span class="brand-tag">Tecnología</span>
+                
             </div>
             <button class="btn-cuaderno" onclick="abrirModalCarrito()">
                 <i class="fa-solid fa-cart-shopping"></i> Carrito 
@@ -780,6 +782,9 @@
             <button class="category-btn" onclick="filtrarCategoria('maquillaje', this)"><i class="fa-solid fa-wand-magic-sparkles"></i> maquillaje</button>
             <button class="category-btn" onclick="filtrarCategoria('hogar', this)"><i class="fa-solid fa-house"></i> Hogar (Boom)</button>
             <button class="category-btn" onclick="filtrarCategoria('cuida tu piel', this)"><i class="fa-solid fa-hand-holding-medical"></i> Cuida tu Piel</button>
+            <button class="filter-btn" onclick="filtrarCategoria('accesorios')"><i class="fa-solid fa-gem"></i> Accesorios</button>
+            <button class="filter-btn" onclick="filtrarCategoria('tecnología')"><i class="fa-solid fa-laptop"></i> Tecnología</button>
+            
         </div>
     </div>
 
@@ -813,7 +818,7 @@
     <!-- Footer -->
     <footer class="footer-site">
         <p><strong>They & Them Bazar Novedades</strong> &copy; 2026. Todos los derechos reservados.</p>
-        <p>Catálogo de belleza, cosmética y limpieza para Guajaló y todo Quito.</p>
+        <p>Catálogo de belleza, perfumes, cosméticos y más.(FP)</p>
     </footer>
 
     <!-- Script de Datos y Funcionalidades -->
@@ -821,9 +826,9 @@
         // Arreglo completo de productos
         const productosData = [
             { id: 1, category: "protector solar", name: "Total Block Protector Solar Kids SPF 100 140g", price: 17.99, img: "img/0013520.jpg", desc: "Total Block Kids renovó su fórmula de SPF 70 a SPF 100 para brindar mayor protección para la delicada piel de los niños. Además, ahora protege contra el 100% de los rayos dañinos del sol con una fórmula no lágrimas." },
-            { id: 2, category: "perfumes hombre", name: "DENDUR 75ML YAMBAL H", price: 27.99, img: "img/0013697.jpg", desc: "Un perfume para hombre ambarado especiado que te acompañará a recorrer kilómetros. Un perfume con notas especiadas de pimienta negra y jengibre, sobre toques ahumados de hojas de tabaco." },
-            { id: 3, category: "perfumes hombre", name: "OSADIA LIMITED EDITION 75ML YAMBAL", price: 27.99, img: "img/0014191.jpg", desc: "Fragancia masculina intensa y sofisticada creada para hombres seguros, modernos y con actitud audaz. Su aroma combina notas frescas, especiadas y amaderadas que transmiten fuerza y elegancia." },
-            { id: 4, category: "perfumes hombre", name: "ZENTRO 75ML YAMBAL H", price: 29.99, img: "img/0012788.jpg", desc: "Perfume para hombre ambarado maderoso. Un aroma innovador y cautivador con notas cítricas de yuzu, cedro y el toque provocativo de haba tonka." },
+            { id: 2, category: "perfumes hombre", name: "DENDUR 75ML yanbal H", price: 27.99, img: "img/0013697.jpg", desc: "Un perfume para hombre ambarado especiado que te acompañará a recorrer kilómetros. Un perfume con notas especiadas de pimienta negra y jengibre, sobre toques ahumados de hojas de tabaco." },
+            { id: 3, category: "perfumes hombre", name: "OSADIA LIMITED EDITION 75ML yanbal", price: 27.99, img: "img/0014191.jpg", desc: "Fragancia masculina intensa y sofisticada creada para hombres seguros, modernos y con actitud audaz. Su aroma combina notas frescas, especiadas y amaderadas que transmiten fuerza y elegancia." },
+            { id: 4, category: "perfumes hombre", name: "ZENTRO 75ML yanbal H", price: 29.99, img: "img/0012788.jpg", desc: "Perfume para hombre ambarado maderoso. Un aroma innovador y cautivador con notas cítricas de yuzu, cedro y el toque provocativo de haba tonka." },
             { id: 5, category: "perfumes hombre", name: "L´ATTRACTION 100ML L´BEL", price: 24.99, img: "img/3503.jpg", desc: "Fragancia masculina herbal aromática creada para el hombre elegante, seguro de sí mismo y con una presencia que atrae todas las miradas. Su fórmula de alta concentración ofrece gran duración." },
             { id: 6, category: "perfumes hombre", name: "KALOS SPORT 100ML ESIKA", price: 18.99, img: "img/3502.jpg", desc: "Fragancia de la familia olfativa Aromática para Hombres. Notas de salida: bergamota, limón y grosellas negras; notas de corazón: azucena y clavel; fondo: cedro y haba tonka." },
             { id: 7, category: "perfumes hombre", name: "ALL BLACK 90ML CYZONE", price: 14.99, img: "img/3707.jpg", desc: "Fragancia masculina de 90 ml perteneciente a la familia oriental especiada, caracterizada por un aroma intenso, cálido y seductor ideal para uso diario o nocturno." },
@@ -831,15 +836,15 @@
             { id: 9, category: "perfumes hombre", name: "BLUE NIGHT 100ML LBEL", price: 24.99, img: "img/3459.jpg", desc: "Fragancia masculina de alta concentración y familia olfativa herbal maderosa / fresca. Destaca por combinar notas acuáticas y de salvia con un fondo cálido de haba tonka." },
             { id: 10, category: "perfumes hombre", name: "FORZE 50ML CYZONE", price: 14.99, img: "img/3967.jpg", desc: "Fragancia masculina de la familia olfativa herbal maderosa/acuática. Destaca por combinar frescura marina con un fondo cálido y versátil." },
             { id: 11, category: "perfumes hombre", name: "BLUE INFINITE LBRL 100ML", price: 24.99, img: "img/3966.jpg", desc: "Fragancia masculina de 100 ml con un aroma herbal y fresco, de muy alta concentración. Creado para hombres libres e independientes." },
-            { id: 12, category: "perfumes hombre", name: "NITRO AIR, 100 ML YAMBAL", price: 15.99, img: "img/4007.jpg", desc: "Un perfume herbal aromático para hombre muy popular y económico. Destaca por sus notas frescas de lavanda, pimienta blanca y maderas de sándalo o guayacán." },
-            { id: 13, category: "perfumes mujer", name: "DULCE AMISTAD 50ML YAMBAL M", price: 23.99, img: "img/0013203.jpg", desc: "Fragancia femenina de 50 ml. Su aroma combina notas frutales y florales con un fondo dulce de frambuesa, flor de cerezo y helado de vainilla." },
-            { id: 14, category: "perfumes mujer", name: "CIELO 50ML YAMBAL", price: 27.99, img: "img/0013641.jpg", desc: "El Cielo de Yanbal (50 ml) es un emblemático Eau de Parfum para mujer con un aroma floral ambarado. Combina notas de jazmín, flor de loto fresca y musk." },
-            { id: 15, category: "perfumes mujer", name: "OSADIA ROJO 50ML YAMBAL", price: 27.99, img: "img/0013197.jpg", desc: "Fragancia femenina de alta intensidad con un aroma floral frutal. Destaca por notas de granada, flor de maracuyá y jengibre, inspirada en la energía de la mujer latina." },
-            { id: 16, category: "perfumes mujer", name: "OSADIA LIMITED EDITION 50ML YAMBAL", price: 27.99, img: "img/0014190.jpg", desc: "Fragancia de alta intensidad disponible para mujer (frutal floral de 50 ml con granada, flor de maracuyá y jengibre), pensada para personalidades audaces." },
-            { id: 17, category: "perfumes mujer", name: "CCORI RUBI 50ML YAMBAL", price: 28.99, img: "img/0014215.jpg", desc: "Perfume femenino de la familia olfativa ámbar floral, caracterizado por su aroma intenso, sofisticado y altamente sensual." },
+            { id: 12, category: "perfumes hombre", name: "NITRO AIR, 100 ML yanbal", price: 15.99, img: "img/4007.jpg", desc: "Un perfume herbal aromático para hombre muy popular y económico. Destaca por sus notas frescas de lavanda, pimienta blanca y maderas de sándalo o guayacán." },
+            { id: 13, category: "perfumes mujer", name: "DULCE AMISTAD 50ML yanbal M", price: 23.99, img: "img/0013203.jpg", desc: "Fragancia femenina de 50 ml. Su aroma combina notas frutales y florales con un fondo dulce de frambuesa, flor de cerezo y helado de vainilla." },
+            { id: 14, category: "perfumes mujer", name: "CIELO 50ML yanbal", price: 27.99, img: "img/0013641.jpg", desc: "El Cielo de Yanbal (50 ml) es un emblemático Eau de Parfum para mujer con un aroma floral ambarado. Combina notas de jazmín, flor de loto fresca y musk." },
+            { id: 15, category: "perfumes mujer", name: "OSADIA ROJO 50ML yanbal", price: 27.99, img: "img/0013197.jpg", desc: "Fragancia femenina de alta intensidad con un aroma floral frutal. Destaca por notas de granada, flor de maracuyá y jengibre, inspirada en la energía de la mujer latina." },
+            { id: 16, category: "perfumes mujer", name: "OSADIA LIMITED EDITION 50ML yanbal", price: 27.99, img: "img/0014190.jpg", desc: "Fragancia de alta intensidad disponible para mujer (frutal floral de 50 ml con granada, flor de maracuyá y jengibre), pensada para personalidades audaces." },
+            { id: 17, category: "perfumes mujer", name: "CCORI RUBI 50ML yanbal", price: 28.99, img: "img/0014215.jpg", desc: "Perfume femenino de la familia olfativa ámbar floral, caracterizado por su aroma intenso, sofisticado y altamente sensual." },
             { id: 18, category: "perfumes mujer", name: "REVE SENSUELLE 50ML L´BEL", price: 24.99, img: "img/3983.jpg", desc: "Rêve Sensuelle es un perfume para mujer de la familia olfativa oriental dulce amaderada. Destaca por su alta concentración aromática y gran fijación." },
             { id: 19, category: "perfumes mujer", name: "HYPNOTISANT 50ML L´BEL", price: 19.99, img: "img/3984.jpg", desc: "Perfume femenino de alta concentración que pertenece a la familia olfativa floral frutal. Su propuesta gira en torno a un concepto misterioso y elegante." },
-            { id: 20, category: "perfumes mujer", name: "TEMPTATION 50ML YAMBAL", price: 28.99, img: "img/0012907.jpg", desc: "Un perfume de mujer floral especiado que combina la exuberancia de la rosa búlgara, gardenia y clavo de olor. ¡Un verdadero elixir de pura tentación!" },
+            { id: 20, category: "perfumes mujer", name: "TEMPTATION 50ML yanbal", price: 28.99, img: "img/0012907.jpg", desc: "Un perfume de mujer floral especiado que combina la exuberancia de la rosa búlgara, gardenia y clavo de olor. ¡Un verdadero elixir de pura tentación!" },
             { id: 21, category: "perfumes mujer", name: "DANCING NIGHT 90ML CYZONE", price: 13.99, img: "img/3509.jpg", desc: "Fragancia femenina de la familia olfativa oriental dulce, diseñada especialmente para destacar en salidas nocturnas, fiestas o eventos especiales." },
             { id: 22, category: "perfumes mujer", name: "VIBRANZA LUMINOUS 45ML ESIKA", price: 21.99, img: "img/3513.jpg", desc: "Perfume femenino de alta concentración que pertenece a la familia olfativa floral oriental, diseñado para la mujer sofisticada, fuerte y sensual." },
             { id: 23, category: "perfumes mujer", name: "IMARI FREE 50ML AVON", price: 11.99, img: "img/7909189357413.jpg", desc: "Fragancia de la familia olfativa Amaderada Aromática / Floral Chipre para mujeres. Inspirada en la frescura y la fuerza del océano." },
