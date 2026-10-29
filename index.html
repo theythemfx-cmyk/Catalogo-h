@@ -43,7 +43,7 @@
         }
         .header-logo {
             width: 190px;
-            height: 190px;
+            height: auto;
             max-width: 100%;
             object-fit: contain;
             flex-shrink: 0;
@@ -713,10 +713,10 @@
     <!-- Encabezado Principal -->
     <header class="header-wrapper">
         <div class="header-container">
-            <img src="img/logoi.png" alt="They & Them Bazar Novedades" class="header-logo" onerror="this.src='https://placehold.co/190x190/1b2a38/ffffff?text=01.PNG'">
+            <img src="img/logoparalasia.png" alt="They & Them Bazar Novedades" class="header-logo" onerror="this.src='https://placehold.co/190x190/1b2a38/ffffff?text=Logo'">
             <div class="header-text-group">
                 <h1 class="header-title">They & Them Bazar Novedades</h1>
-                <p class="header-subtitle">Perfumería, cosmética y productos para el hogar de tus marcas favoritas y más. ¡Haz tu pedido desde casa!</p>
+                <p class="header-subtitle">Perfumería, cosmética y productos para el hogar de tus marcas favoritas. ¡Haz tu pedido desde casa!</p>
             </div>
         </div>
     </header>
@@ -756,9 +756,9 @@
                 <span class="brand-tag">Ésika</span>
                 <span class="brand-tag">L'Bel</span>
                 <span class="brand-tag">Avon</span>
-                <span class="brand-tag">Cyzone</span>
+                <span class="brand-tag">Saison</span>
+                <span class="brand-tag">Booz</span>
                 <span class="brand-tag">Boom</span>
-                
             </div>
             <button class="btn-cuaderno" onclick="abrirModalCarrito()">
                 <i class="fa-solid fa-cart-shopping"></i> Carrito 
@@ -813,7 +813,7 @@
     <!-- Footer -->
     <footer class="footer-site">
         <p><strong>They & Them Bazar Novedades</strong> &copy; 2026. Todos los derechos reservados.</p>
-        <p>Catálogo de belleza, cosmética y limpieza para Guajaló y todo Ecuador.</p>
+        <p>Catálogo de belleza, cosmética y limpieza para Guajaló y todo Quito.</p>
     </footer>
 
     <!-- Script de Datos y Funcionalidades -->
@@ -888,8 +888,13 @@
             { id: 66, category: "cuida tu piel", name: "CREMA CORPORAL AVON AGUACATE 6 EN 1 1L", price: 8.89, img: "img/7909189339068.jpg", desc: "Humectación intensiva con aceite de aguacate y Vitamina E, ideal para zonas resecas como codos, rodillas y talones." },
             { id: 67, category: "niños", name: "COLONIA MINI CHICS 120ML ÉSIKA", price: 6.99, img: "img/39901.jpg", desc: "Colonia infantil de 120 ml con sutiles destellos brillantes (glitter) y un fresco aroma dulce para niñas." },
             { id: 68, category: "niños", name: "COLONIA COMANDO FORCE XPLASH 120ML ÉSIKA", price: 6.99, img: "img/3991.jpg", desc: "Colonia para niños aventureros con fragancia refrescante y alegre ideal para el uso diario después del baño." },
-            { id: 69, category: "niños", name: "COLONIA COMANDO FORCE AROMAX 120ML ÉSIKA", price: 6.99, img: "img/3992.jpg", desc: "Fragancia masculina infantil con notas enérgicas diseñada para pequeños superhéroes a partir de los 5 años." }
-            { id: 70, category: "PERFUMERÍA", name: "OHM YANBAL", price: 29,99, img: "img/3192.jpg", desc: "Un perfume para hombre herbal cítrico que mezcla notas deliciosas de toronja rosada, salvia y toques especiales de cuero. Un aroma único que te invita a disfrutar la esencia y frescura de la vida." }
+            { id: 69, category: "niños", name: "COLONIA COMANDO FORCE AROMAX 120ML ÉSIKA", price: 6.99, img: "img/3992.jpg", desc: "Fragancia masculina infantil con notas enérgicas diseñada para pequeños superhéroes a partir de los 5 años." },
+            { id: 70, category: "perfumes hombre", name: "OHM YANBAL", price: 29.99, img: "img/3192.jpg", desc: "Un perfume para hombre herbal cítrico que mezcla notas deliciosas de toronja rosada, salvia y toques especiales de cuero. Un aroma único que te invita a disfrutar la esencia y frescura de la vida." },
+            { id: 71, category: "cosmetología", name: "MASCARA DE PESTAÑAS MEGA FULL SIZE ESIKA (A PRUEBA DE AGUA)", price: 5.99, img: "img/3212.jpg", desc: "Mega Full Size es la máscara de pestañas (rímel) número uno de Ésika, ampliamente reconocida en el mercado por su capacidad para ofrecer un largo insuperable de hasta 10 veces y un efecto de alta definición sin dejar grumos, a prueba de agua que aporta tamaño XXL a las pestañas con una fórmula que resiste el roce, la humedad, el sudor y hasta las lágrimas sin correrse ni mancharse." },
+            { id: 72, category: "perfumes mujer", name: "LIASSON", price: 19.99, img: "img/3191.jpg", desc: "Perfume femenino de la familia olfativa floral amaderada, reconocido por su estilo clásico, elegante y sofisticada concentración máxima. Es una fragancia diseñada para destacar la elegancia natural de la mujer, ofreciendo una excelente fijación y larga duración en la piel." },
+            { id: 73, category: "protector solar", name: "PROTECTOR SOLAR JUMBO TOTAL BLOCK 140G", price: 18.99, img: "img/0013517.jpg", desc: "Es un protector solar de amplio espectro diseñado para brindar una protección contra el 100% de los rayos dañinos del sol. Altamente resistente al agua y al sudor, ideal para el uso diario o actividades al aire libre, Ultra Block Technology que protege contra los rayos UVB (SPF 100), UVA (PA++++), Luz Azul e Infrarrojos." },
+            { id: 74, category: "perfumes mujer", name: "DREAM 45ML ESIKA", price: 17.99, img: "img/3711.jpg", desc: "Fragancia femenina de la familia floral frutal, diseñada para la mujer audaz, vibrante y llena de energía. Destaca por su alta concentración y larga duración gracias al proceso tecnológico Essent Tech de la marca." },
+            { id: 75, category: "perfumes mujer", name: "SWEET BLACK INTENSE 50ML CYZONE", price: 14.99, img: "img/3709.jpg", desc: "Perfume femenino de la familia olfativa oriental dulce (u oriental floral), diseñado con alta concentración para brindar una larga duración en la piel, conocido por ser una fragancia intensa, cálida y sensual que combina un equilibrio dulce sin llegar a ser empalagosa." }
         ];
 
         let carrito = [];
