@@ -896,7 +896,19 @@
             { id: 74, category: "perfumes mujer", name: "DREAM 45ML ESIKA", price: 17.99, img: "img/3711.jpg", desc: "Fragancia femenina de la familia floral frutal, diseñada para la mujer audaz, vibrante y llena de energía. Destaca por su alta concentración y larga duración gracias al proceso tecnológico Essent Tech de la marca." },
             { id: 75, category: "perfumes mujer", name: "SWEET BLACK INTENSE 50ML CYZONE", price: 14.99, img: "img/3709.jpg", desc: "Perfume femenino de la familia olfativa oriental dulce (u oriental floral), diseñado con alta concentración para brindar una larga duración en la piel, conocido por ser una fragancia intensa, cálida y sensual que combina un equilibrio dulce sin llegar a ser empalagosa." }
         ];
-
+// ==========================================
+    // 2. PEGA ESTO AQUÍ (Justo debajo de productosData)
+    // ==========================================
+    if (localStorage.getItem('bazar_productos_stock')) {
+        try {
+            let estadosGuardados = JSON.parse(localStorage.getItem('bazar_productos_stock'));
+            productosData.forEach((p) => {
+                if (estadosGuardados[p.id] !== undefined) {
+                    p.disponible = estadosGuardados[p.id];
+                }
+            });
+        } catch(e) { console.error(e); }
+    }
         let carrito = [];
 
         // Renderizar Productos en el DOM
