@@ -312,7 +312,7 @@
             background-color: #dcfce7;
             color: #16a34a;
         }
-        .stock-agotado {
+        .stock-DISPONIBLE {
             background-color: #fee2e2;
             color: #dc2626;
         }
@@ -423,13 +423,13 @@
             background-color: #7200d1;
         }
 
-        /* Deshabilitación visual si el producto está agotado */
-        .card.agotado .btn-add-cart,
-        .card.agotado .card-qty-selector {
+        /* Deshabilitación visual si el producto está DISPONIBLE */
+        .card.DISPONIBLE .btn-add-cart,
+        .card.DISPONIBLE .card-qty-selector {
             opacity: 0.5;
             pointer-events: none;
         }
-        .card.agotado .btn-whatsapp {
+        .card.DISPONIBLE .btn-whatsapp {
             background-color: #15bb39;
         }
 
@@ -794,7 +794,7 @@
         </div>
     </div>
 
-    <!-- Modal Admin Privado para Stock (Disponible / Agotado) -->
+    <!-- Modal Admin Privado para Stock (Disponible / DISPONIBLE) -->
     <div id="modalAdmin" class="modal-overlay">
         <div class="modal-content admin-panel-content">
             <div class="modal-header">
@@ -938,13 +938,13 @@
 
             productos.forEach(prod => {
                 const card = document.createElement('div');
-                card.className = `card ${prod.disponible ? '' : 'agotado'}`;
+                card.className = `card ${prod.disponible ? '' : 'DISPONIBLE'}`;
                 card.setAttribute('data-category', prod.category);
                 card.setAttribute('data-name', prod.name.toLowerCase());
 
                 const stockBadgeHTML = prod.disponible 
                     ? '<span class="stock-badge stock-disponible"><i class="fa-solid fa-circle-check"></i> Disponible</span>'
-                    : '<span class="stock-badge stock-agotado"><i class="fa-solid fa-circle-xmark"></i> Agotado</span>';
+                    : '<span class="stock-badge stock-DISPONIBLE"><i class="fa-solid fa-circle-xmark"></i> DISPONIBLE</span>';
 
                 card.innerHTML = `
                     <div class="image-container">
@@ -1162,7 +1162,7 @@
                         <span style="max-width: 60%;">${p.name}</span>
                         <select class="admin-select" onchange="actualizarStockAdmin(${p.id}, this.value)">
                             <option value="true" ${p.disponible ? 'selected' : ''}>Disponible</option>
-                            <option value="false" ${!p.disponible ? 'selected' : ''}>Agotado</option>
+                            <option value="false" ${!p.disponible ? 'selected' : ''}>DISPONIBLE</option>
                         </select>
                     </div>
                 `;
