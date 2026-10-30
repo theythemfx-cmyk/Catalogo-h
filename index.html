@@ -240,6 +240,7 @@
             justify-content: space-between;
             transition: transform 0.2s, box-shadow 0.2s;
             border: 1px solid #edf2f7;
+            position: relative;
         }
         .card:hover {
             transform: translateY(-4px);
@@ -296,25 +297,36 @@
             font-weight: 700;
             text-transform: uppercase;
         }
+        
+        /* Insignias de Stock Dinámicas */
         .stock-badge {
             font-size: 11px;
-            color: #16a34a;
-            font-weight: 600;
+            font-weight: 700;
             display: flex;
             align-items: center;
             gap: 4px;
+            padding: 3px 8px;
+            border-radius: 6px;
         }
+        .stock-disponible {
+            background-color: #dcfce7;
+            color: #16a34a;
+        }
+        .stock-agotado {
+            background-color: #fee2e2;
+            color: #dc2626;
+        }
+
         .card-title {
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 700;
             color: #1e293b;
             margin: 0 0 8px 0;
             text-transform: uppercase;
             line-height: 1.3;
         }
-        /* Descripción completa sin recortes */
         .card-description {
-            font-size: 13px;
+            font-size: 12px;
             color: #475569;
             margin-bottom: 16px;
             line-height: 1.45;
@@ -391,8 +403,8 @@
             background-color: #1eb856;
         }
         .btn-add-cart {
-            background-color: #8b00ff;
-            color: white;
+            background-color: hsl(268, 88%, 16%);
+            color: rgb(247, 244, 244);
             border: none;
             padding: 9px 12px;
             border-radius: 6px;
@@ -405,10 +417,20 @@
             justify-content: center;
             gap: 6px;
             transition: background 0.2s;
-            box-shadow: 0 2px 4px rgba(139, 0, 255, 0.2);
+            box-shadow: 0 2px 4px rgba(24, 8, 37, 0.959);
         }
         .btn-add-cart:hover {
             background-color: #7200d1;
+        }
+
+        /* Deshabilitación visual si el producto está agotado */
+        .card.agotado .btn-add-cart,
+        .card.agotado .card-qty-selector {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+        .card.agotado .btn-whatsapp {
+            background-color: #15bb39;
         }
 
         /* Modal del Carrito de Compras */
@@ -454,7 +476,7 @@
             border: none;
             font-size: 26px;
             cursor: pointer;
-            color: #64748b;
+            color: #648b6a;
             transition: color 0.15s;
         }
         .close-modal:hover {
@@ -588,7 +610,7 @@
             max-width: 80%;
         }
 
-        /* Footer del Sitio */
+        /* Footer del Sitio, Contador de Visitas y Botón Admin Privado */
         .footer-site {
             text-align: center;
             padding: 25px 20px;
@@ -601,110 +623,74 @@
         .footer-site strong {
             color: #fff;
         }
+        .visitas-counter {
+            margin-top: 8px;
+            font-size: 12px;
+            color: #a78bfa;
+        }
+        .admin-trigger {
+            background: none;
+            border: none;
+            color: #475569;
+            cursor: pointer;
+            font-size: 11px;
+            margin-top: 10px;
+            text-decoration: underline;
+        }
+
+        /* Modal de Panel Admin Privado */
+        .admin-panel-content {
+            background: #1e293b;
+            color: #fff;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 12px;
+            padding: 20px;
+        }
+        .admin-product-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #334155;
+            font-size: 13px;
+        }
+        .admin-select {
+            padding: 6px 10px;
+            border-radius: 6px;
+            background: #0f172a;
+            color: #fff;
+            border: 1px solid #475569;
+        }
 
         /* Adaptación móvil optimizada y fluida */
         @media (max-width: 640px) {
-            .header-container {
-                padding: 12px;
-                gap: 12px;
-            }
-            .header-logo {
-                width: 100px;
-                height: 100px;
-            }
-            .header-title {
-                font-size: 18px;
-            }
-            .header-subtitle {
-                font-size: 11px;
-            }
-            .info-banner-container {
-                grid-template-columns: 1fr;
-                gap: 10px;
-            }
-            .controls-section {
-                padding: 12px;
-                gap: 12px;
-            }
-            .search-input {
-                font-size: 13px;
-                padding: 10px 14px 10px 40px;
-            }
-            .btn-cuaderno {
-                padding: 8px 14px;
-                font-size: 12px;
-                width: 100%;
-                justify-content: center;
-            }
-            .brand-pills {
-                display: none; /* Ocultar tags de marcas secundarias en celulares para ahorrar espacio */
-            }
-            .category-btn {
-                padding: 6px 12px;
-                font-size: 12px;
-            }
-            .catalog-container {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-                gap: 12px;
-                padding: 0 10px;
-                margin: 15px auto;
-            }
-            .image-container {
-                height: 145px;
-            }
-            .card-content {
-                padding: 10px;
-            }
-            .card-title {
-                font-size: 12px;
-                margin-bottom: 6px;
-            }
-            /* La descripción se muestra COMPLETA sin recortes */
-            .card-description {
-                font-size: 11px;
-                margin-bottom: 10px;
-            }
-            .card-badge {
-                font-size: 9px;
-                padding: 2px 5px;
-            }
-            .stock-badge {
-                font-size: 10px;
-            }
-            .price {
-                font-size: 15px;
-            }
-            .card-qty-selector button {
-                padding: 3px 6px;
-                font-size: 11px;
-            }
-            .card-qty-selector span {
-                padding: 0 4px;
-                font-size: 11px;
-            }
-            .btn-add-cart, .btn-whatsapp {
-                padding: 7px 6px;
-                font-size: 11px;
-            }
-            .modal-content {
-                padding: 16px;
-                width: 95%;
-            }
-            .modal-header h2 {
-                font-size: 16px;
-            }
-            .cart-item-title {
-                font-size: 12px;
-            }
-            .cart-total {
-                font-size: 15px;
-            }
-            .btn-checkout {
-                padding: 10px 16px;
-                font-size: 13px;
-                width: 100%;
-                justify-content: center;
-            }
+            .header-container { padding: 12px; gap: 12px; }
+            .header-logo { width: 100px; height: 100px; }
+            .header-title { font-size: 18px; }
+            .header-subtitle { font-size: 11px; }
+            .info-banner-container { grid-template-columns: 1fr; gap: 10px; }
+            .controls-section { padding: 12px; gap: 12px; }
+            .search-input { font-size: 13px; padding: 10px 14px 10px 40px; }
+            .btn-cuaderno { padding: 8px 14px; font-size: 12px; width: 100%; justify-content: center; }
+            .brand-pills { display: none; }
+            .category-btn { padding: 6px 12px; font-size: 12px; }
+            .catalog-container { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; padding: 0 10px; margin: 15px auto; }
+            .image-container { height: 145px; }
+            .card-content { padding: 10px; }
+            .card-title { font-size: 12px; margin-bottom: 6px; }
+            .card-description { font-size: 11px; margin-bottom: 10px; }
+            .card-badge { font-size: 9px; padding: 2px 5px; }
+            .stock-badge { font-size: 10px; }
+            .price { font-size: 15px; }
+            .card-qty-selector button { padding: 3px 6px; font-size: 11px; }
+            .card-qty-selector span { padding: 0 4px; font-size: 11px; }
+            .btn-add-cart, .btn-whatsapp { padding: 7px 6px; font-size: 11px; }
+            .modal-content { padding: 16px; width: 95%; }
+            .modal-header h2 { font-size: 16px; }
+            .cart-item-title { font-size: 12px; }
+            .cart-total { font-size: 15px; }
+            .btn-checkout { padding: 10px 16px; font-size: 13px; width: 100%; justify-content: center; }
         }
     </style>
 </head>
@@ -721,7 +707,7 @@
         </div>
     </header>
 
-    <!-- Banner Informativo: Métodos de Pago y Zonas de Entrega -->
+    <!-- Banner Informativo -->
     <section class="info-banner">
         <div class="info-banner-container">
             <div class="info-item">
@@ -760,7 +746,7 @@
                 <span class="brand-tag">Boom</span>
                 <span class="brand-tag">Accesorios</span>
                 <span class="brand-tag">Tecnología</span>
-                
+                <span class="brand-tag">Promociones</span>
             </div>
             <button class="btn-cuaderno" onclick="abrirModalCarrito()">
                 <i class="fa-solid fa-cart-shopping"></i> Carrito 
@@ -782,9 +768,9 @@
             <button class="category-btn" onclick="filtrarCategoria('maquillaje', this)"><i class="fa-solid fa-wand-magic-sparkles"></i> maquillaje</button>
             <button class="category-btn" onclick="filtrarCategoria('hogar', this)"><i class="fa-solid fa-house"></i> Hogar (Boom)</button>
             <button class="category-btn" onclick="filtrarCategoria('cuida tu piel', this)"><i class="fa-solid fa-hand-holding-medical"></i> Cuida tu Piel</button>
-            <button class="filter-btn" onclick="filtrarCategoria('accesorios')"><i class="fa-solid fa-gem"></i> Accesorios</button>
-            <button class="filter-btn" onclick="filtrarCategoria('tecnología')"><i class="fa-solid fa-laptop"></i> Tecnología</button>
-            
+            <button class="category-btn" onclick="filtrarCategoria('accesorios', this)"><i class="fa-solid fa-gem"></i> Accesorios</button>
+            <button class="category-btn" onclick="filtrarCategoria('tecnología', this)"><i class="fa-solid fa-laptop"></i> Tecnología</button>
+            <button class="category-btn" onclick="filtrarCategoria('promociones', this)"><i class="fa-solid fa-tag"></i> Promociones</button>
         </div>
     </div>
 
@@ -808,6 +794,22 @@
         </div>
     </div>
 
+    <!-- Modal Admin Privado para Stock (Disponible / Agotado) -->
+    <div id="modalAdmin" class="modal-overlay">
+        <div class="modal-content admin-panel-content">
+            <div class="modal-header">
+                <h2><i class="fa-solid fa-lock"></i> Panel Admin (Stock)</h2>
+                <button class="close-modal" onclick="cerrarModalAdmin()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p style="font-size: 12px; color: #94a3b8; margin-bottom: 12px;">Cambia el estado de tus productos de forma privada:</p>
+                <div id="admin-lista-productos">
+                    <!-- Se llena dinámicamente desde el script -->
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Modal de Zoom de Imágenes -->
     <div id="zoomModal" class="zoom-modal" onclick="cerrarZoom()">
         <span class="zoom-close">&times;</span>
@@ -815,10 +817,14 @@
         <div id="zoomCaption" class="zoom-caption"></div>
     </div>
 
-    <!-- Footer -->
+    <!-- Footer con Contador de Visitas y Botón Admin Privado -->
     <footer class="footer-site">
         <p><strong>They & Them Bazar Novedades</strong> &copy; 2026. Todos los derechos reservados.</p>
-        <p>Catálogo de belleza, perfumes, cosméticos y más.(FP)</p>
+        <p>Catálogo de belleza, perfumes, cosméticos y más. (FP)</p>
+        <div class="visitas-counter">
+            <i class="fa-solid fa-eye"></i> Visitas al catálogo: <span id="visitas-contador">Cargando...</span>
+        </div>
+        <button class="admin-trigger" onclick="pedirClaveAdmin()"><i class="fa-solid fa-gear"></i> Modo Administrador</button>
     </footer>
 
     <!-- Script de Datos y Funcionalidades -->
@@ -899,21 +905,25 @@
             { id: 72, category: "perfumes mujer", name: "LIASSON", price: 19.99, img: "img/3191.jpg", desc: "Perfume femenino de la familia olfativa floral amaderada, reconocido por su estilo clásico, elegante y sofisticada concentración máxima. Es una fragancia diseñada para destacar la elegancia natural de la mujer, ofreciendo una excelente fijación y larga duración en la piel." },
             { id: 73, category: "protector solar", name: "PROTECTOR SOLAR JUMBO TOTAL BLOCK 140G", price: 18.99, img: "img/0013517.jpg", desc: "Es un protector solar de amplio espectro diseñado para brindar una protección contra el 100% de los rayos dañinos del sol. Altamente resistente al agua y al sudor, ideal para el uso diario o actividades al aire libre, Ultra Block Technology que protege contra los rayos UVB (SPF 100), UVA (PA++++), Luz Azul e Infrarrojos." },
             { id: 74, category: "perfumes mujer", name: "DREAM 45ML ESIKA", price: 17.99, img: "img/3711.jpg", desc: "Fragancia femenina de la familia floral frutal, diseñada para la mujer audaz, vibrante y llena de energía. Destaca por su alta concentración y larga duración gracias al proceso tecnológico Essent Tech de la marca." },
-            //{ id: 75, category: "perfumes mujer", name: "SWEET BLACK INTENSE 50ML CYZONE", price: 14.99, img: "img/3709.jpg", desc: "Perfume femenino de la familia olfativa oriental dulce (u oriental floral), diseñado con alta concentración para brindar una larga duración en la piel, conocido por ser una fragancia intensa, cálida y sensual que combina un equilibrio dulce sin llegar a ser empalagosa." }
+            //{ id: 75, category: "perfumes mujer", name: "SWEET BLACK INTENSE 50ML CYZONE", price: 14.99, img: "img/3709.jpg", desc: "Perfume femenino de la familia olfativa oriental dulce (u oriental floral), diseñado con alta concentración para brindar una larga duración en la piel, conocido por ser una fragancia intensa, cálida y sensual que combina un equilibrio dulce sin llegar a ser empalagosa." },
+            { id: 76, category: "tecología", name: "MOUSE HP 150 INALAMBRICO", price: 10.99, img: "img/195161814662.jpg", desc: "Disfruta de una nueva libertad digital con el rato´n inala´mbrico HP 150. Olvi´date de los cables que limitan tu movimiento y desordenan tu espacio. Su disen~o ergono´mico y suave se adapta perfectamente a tu mano, hacie´ndote olvidar que lo tienes, para que puedas concentrarte solo en tu productividad. Lle´valo contigo a cualquier parte, desde la oficina hasta tu pro´ximo viaje, y mante´n el control total de tu porta´til con fluidez y precisio´n. Es la herramienta perfecta para trabajar de forma co´moda y eficiente durante horas, sin importar si eres diestro o zurdo." },
+            { id: 77, category: "tecología", name: "Smart Watch Infinix Xw4l Black Bluetooth 5.3", price: 28.99, img: "img/3978.jpg", desc: "Reloj inteligente de alto rendimiento con conectividad avanzada.   Pantalla IPS de 2.04': Visualización amplia y clara de métricas y notificaciones.   Bluetooth 5.3: Conexión inalámbrica estable, rápida y de bajo consumo.   Resistencia IP68: Protección contra polvo y sumergible en agua dulce.   Más de 100 Modos Deportivos: Monitoreo completo para todo tipo de entrenamiento." },
+            { id: 78, category: "tecnología", name: "UPS HIKVISION AVR 600 VA / 360 W 6 SALIDAS (120V) (50/60HZ) - DS-UPS600-X", price: 32.99, img: "img/304901285.jpg", desc: "Sistemas de alimentación ininterrumpida (UPS/No-Break) de línea interactiva con capacidad de 600 VA / 360 W.   Capacidad de potencia: 600 VA / 360 W.   Distribución: 6 tomas tipo NEMA 5-15R en total.   4 tomas con respaldo de batería y regulación automática de voltaje (AVR).   2 tomas sin respaldo con función bypass y protección contra picos.   Regulación de voltaje: entrada de 85 a 150 VCA y salida estable de 102 a 132 VCA.   Ideal para routers, computadoras de escritorio y videovigilancia." },
+            
+            
         ];
-// ==========================================
-    // 2. PEGA ESTO AQUÍ (Justo debajo de productosData)
-    // ==========================================
-    if (localStorage.getItem('bazar_productos_stock')) {
-        try {
-            let estadosGuardados = JSON.parse(localStorage.getItem('bazar_productos_stock'));
-            productosData.forEach((p) => {
-                if (estadosGuardados[p.id] !== undefined) {
-                    p.disponible = estadosGuardados[p.id];
-                }
-            });
-        } catch(e) { console.error(e); }
-    }
+// Cargar estados de stock guardados de forma privada en el navegador
+        if (localStorage.getItem('bazar_productos_stock')) {
+            try {
+                let estadosGuardados = JSON.parse(localStorage.getItem('bazar_productos_stock'));
+                productosData.forEach((p) => {
+                    if (estadosGuardados[p.id] !== undefined) {
+                        p.disponible = estadosGuardados[p.id];
+                    }
+                });
+            } catch(e) { console.error(e); }
+        }
+
         let carrito = [];
 
         // Renderizar Productos en el DOM
@@ -928,9 +938,13 @@
 
             productos.forEach(prod => {
                 const card = document.createElement('div');
-                card.className = 'card';
+                card.className = `card ${prod.disponible ? '' : 'agotado'}`;
                 card.setAttribute('data-category', prod.category);
                 card.setAttribute('data-name', prod.name.toLowerCase());
+
+                const stockBadgeHTML = prod.disponible 
+                    ? '<span class="stock-badge stock-disponible"><i class="fa-solid fa-circle-check"></i> Disponible</span>'
+                    : '<span class="stock-badge stock-agotado"><i class="fa-solid fa-circle-xmark"></i> Agotado</span>';
 
                 card.innerHTML = `
                     <div class="image-container">
@@ -941,7 +955,7 @@
                         <div>
                             <div class="card-header-tags">
                                 <span class="card-badge">${prod.category}</span>
-                                <span class="stock-badge"><i class="fa-solid fa-circle-check"></i> Disponible</span>
+                                ${stockBadgeHTML}
                             </div>
                             <h3 class="card-title">${prod.name}</h3>
                             <p class="card-description">${prod.desc}</p>
@@ -1090,7 +1104,8 @@
         // Filtro por Buscador en Tiempo Real
         function filtrarProductos() {
             const query = document.getElementById('buscador').value.toLowerCase().trim();
-            const categoriaActiva = document.querySelector('.category-btn.active').getAttribute('onclick').match(/'([^']+)'/)[1];
+            const categoriaActivaBtn = document.querySelector('.category-btn.active');
+            const categoriaActiva = categoriaActivaBtn ? categoriaActivaBtn.getAttribute('onclick').match(/'([^']+)'/)[1] : 'todos';
 
             const filtrados = productosData.filter(prod => {
                 const coincideNombre = prod.name.toLowerCase().includes(query) || prod.category.toLowerCase().includes(query) || prod.desc.toLowerCase().includes(query);
@@ -1123,75 +1138,68 @@
             document.getElementById('zoomModal').style.display = "none";
         }
 
-        // Cargar todo al iniciar
+        // Funciones del Panel Admin Privado para Stock
+        function pedirClaveAdmin() {
+            let clave = prompt("Introduce tu clave de administrador:");
+            if (clave === "2026") { // Clave de acceso privada
+                poblarModalAdmin();
+                document.getElementById('modalAdmin').style.display = 'flex';
+            } else if (clave !== null) {
+                alert("Clave incorrecta.");
+            }
+        }
+
+        function cerrarModalAdmin() {
+            document.getElementById('modalAdmin').style.display = 'none';
+        }
+
+        function poblarModalAdmin() {
+            let contenedor = document.getElementById('admin-lista-productos');
+            contenedor.innerHTML = '';
+            productosData.forEach(p => {
+                contenedor.innerHTML += `
+                    <div class="admin-product-row">
+                        <span style="max-width: 60%;">${p.name}</span>
+                        <select class="admin-select" onchange="actualizarStockAdmin(${p.id}, this.value)">
+                            <option value="true" ${p.disponible ? 'selected' : ''}>Disponible</option>
+                            <option value="false" ${!p.disponible ? 'selected' : ''}>Agotado</option>
+                        </select>
+                    </div>
+                `;
+            });
+        }
+
+        function actualizarStockAdmin(id, valor) {
+            let estadoBool = (valor === 'true');
+            let prod = productosData.find(p => p.id === id);
+            if (prod) {
+                prod.disponible = estadoBool;
+            }
+            
+            // Guardar en localStorage para que persista
+            let estadosGuardados = {};
+            productosData.forEach(p => {
+                estadosGuardados[p.id] = p.disponible;
+            });
+            localStorage.setItem('bazar_productos_stock', JSON.stringify(estadosGuardados));
+
+            // Refrescar el catálogo en pantalla
+            filtrarProductos();
+        }
+
+        // Cargar contador de visitas y catálogo al iniciar
         window.onload = function() {
+            // Contador de Visitas
+            if (!localStorage.getItem('visitas_they_them_registrada')) {
+                let visitasActuales = localStorage.getItem('they_them_contador_total') ? parseInt(localStorage.getItem('they_them_contador_total')) + 1 : 165;
+                localStorage.setItem('they_them_contador_total', visitasActuales);
+                localStorage.setItem('visitas_they_them_registrada', 'true');
+            }
+            document.getElementById('visitas-contador').innerText = localStorage.getItem('they_them_contador_total') || '165';
+
+            // Renderizado inicial
             renderizarCatalogo(productosData);
         };
-    // ==========================================
-// PANEL EMERGENTE PRIVADO (SOLO PARA TI - TECLA F4)
-// ==========================================
-function activarPanelAdministrador() {
-    // 1. Solicita la clave privada de acceso
-    let clave = prompt("Panel Privado Admin - Ingrese su clave secreta:");
-    if (clave !== "2026") {
-        alert("Clave incorrecta. Acceso denegado.");
-        return;
-    }
-
-    // 2. Elimina el panel anterior si ya estaba abierto en pantalla
-    if (document.getElementById("admin-panel-control")) {
-        document.getElementById("admin-panel-control").remove();
-    }
-
-    // 3. Crea la ventana flotante emergente en la esquina inferior derecha
-    let panelHTML = `
-        <div id="admin-panel-control" style="position: fixed; bottom: 20px; right: 20px; background: #1e293b; color: white; padding: 18px; border-radius: 12px; z-index: 9999; box-shadow: 0 10px 30px rgba(0,0,0,0.6); max-width: 320px; border: 2px solid #4f46e5; font-family: sans-serif;">
-            <h4 style="margin: 0 0 10px 0; font-size: 15px; color: #818cf8; border-bottom: 1px solid #334155; padding-bottom: 6px;">Panel Privado de Stock</h4>
-            
-            <label style="font-size: 12px; color: #94a3b8; display: block; margin-bottom: 6px;">Seleccionar Producto:</label>
-            <select id="admin-select-prod" style="width: 100%; margin-bottom: 12px; padding: 8px; background: #0f172a; color: white; border: 1px solid #334155; border-radius: 6px; font-size: 12px; outline: none;">
-                ${productosData.map((p, idx) => `<option value="${idx}">${p.name} (${p.disponible ? 'Disponible' : 'Agotado'})</option>`).join('')}
-            </select>
-            
-            <div style="display: flex; gap: 8px;">
-                <button onclick="cambiarEstadoStock(true)" style="flex: 1; background: #16a34a; color: white; border: none; padding: 8px; border-radius: 6px; font-weight: 600; cursor: pointer;">Disponible</button>
-                <button onclick="cambiarEstadoStock(false)" style="flex: 1; background: #dc2626; color: white; border: none; padding: 8px; border-radius: 6px; font-weight: 600; cursor: pointer;">Agotado</button>
-            </div>
-            
-            <button onclick="document.getElementById('admin-panel-control').remove()" style="width: 100%; margin-top: 10px; background: transparent; color: #94a3b8; border: none; cursor: pointer; font-size: 11px; text-decoration: underline;">Cerrar Panel</button>
-        </div>
-    `;
-    document.body.insertAdjacentHTML('beforeend', panelHTML);
-}
-
-// 4. Cambia el estado del producto y lo guarda localmente en tu equipo
-function cambiarEstadoStock(nuevoEstado) {
-    let selectEl = document.getElementById("admin-select-prod");
-    if (!selectEl) return;
-    
-    let index = selectEl.value;
-    productosData[index].disponible = nuevoEstado;
-    
-    // Guarda de forma persistente en la memoria local del navegador de tu dispositivo
-    let estadosGuardados = {};
-    productosData.forEach(p => { estadosGuardados[p.id] = p.disponible; });
-    localStorage.setItem('bazar_productos_stock', JSON.stringify(estadosGuardados));
-
-    // Refresca la vista del catálogo
-    filtrarProductos();
-    
-    // Actualiza el texto en la lista desplegable
-    selectEl.options[index].text = `${productosData[index].name} (${nuevoEstado ? 'Disponible' : 'Agotado'})`;
-    alert("¡Estado actualizado con éxito!");
-}
-
-// 5. Escucha la tecla F4 para activar la ventana privada
-document.addEventListener('keydown', function(e) {
-    if (e.key === "F4") {
-        e.preventDefault();
-        activarPanelAdministrador();
-    }
-});
     </script>
 </body>
 </html>
