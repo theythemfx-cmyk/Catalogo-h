@@ -860,24 +860,17 @@
 
         let carrito = [];
 
-        // Renderizar Productos en el DOM ordenados por categoría automáticamente
+        // Renderizar Productos en el DOM
         function renderizarCatalogo(productos) {
             const catalogo = document.getElementById('catalogo');
             catalogo.innerHTML = '';
 
-            // ORDENAMIENTO AUTOMÁTICO POR CATEGORÍA Y LUEGO POR NOMBRE
-            const productosOrdenados = [...productos].sort((a, b) => {
-                if (a.category < b.category) return -1;
-                if (a.category > b.category) return 1;
-                return a.name.localeCompare(b.name);
-            });
-
-            if (productosOrdenados.length === 0) {
+            if (productos.length === 0) {
                 catalogo.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 40px; color: #64748b; font-size: 16px;">No se encontraron productos que coincidan con la búsqueda.</div>';
                 return;
             }
 
-            productosOrdenados.forEach(prod => {
+            productos.forEach(prod => {
                 const card = document.createElement('div');
                 card.className = `card ${prod.disponible ? '' : 'agotado'}`;
                 card.setAttribute('data-category', prod.category);
@@ -887,7 +880,7 @@
                     ? '<span class="stock-badge stock-disponible"><i class="fa-solid fa-circle-check"></i> Disponible</span>'
                     : '<span class="stock-badge stock-agotado"><i class="fa-solid fa-circle-xmark"></i> Agotado</span>';
 
-                // Extrae solo el código numérico del archivo limpiando 'img/' y '.jpg' para el zoom
+                // Extrae solo el código numérico del archivo limpiando 'img/' y '.jpg'
                 const codigoLimpio = prod.img.replace('img/', '').replace('.jpg', '');
 
                 card.innerHTML = `
@@ -914,10 +907,10 @@
                                 </div>
                             </div>
                             <div class="card-actions-row">
-                                <button class="btn-add-cart" onclick="agregarAlCarritoDesdeCard(this, '${prod.name.replace(/'/g, "\\'")}', ${prod.price}, '${prod.category}')">
+                                <button class="btn-add-cart" onclick="agregarAlCarritoDesdeCard(this, '${prod.name.replace(/'/g, "\\'")}', ${prod.price})">
                                     <i class="fa-solid fa-cart-plus"></i> Carrito
                                 </button>
-                                <a href="https://wa.me/593985282615?text=${encodeURIComponent('Hola, estoy interesado en adquirir el producto [ ' + prod.id + ' ]: ' + prod.name + ' ($' + prod.price.toFixed(2) + ')')}" class="btn-whatsapp" target="_blank">
+                                <a href="https://wa.me/593985282615?text=${encodeURIComponent('Hola, estoy interesado en adquirir el producto: ' + prod.name + ' ($' + prod.price.toFixed(2) + ')')}" class="btn-whatsapp" target="_blank">
                                     <i class="fa-brands fa-whatsapp"></i> Pedir
                                 </a>
                             </div>
@@ -936,8 +929,8 @@
             selectorSpan.innerText = val;
         }
 
-        // Agregar al carrito desde tarjeta y ordenar automáticamente por categoría
-        function agregarAlCarritoDesdeCard(button, nombreProducto, precio, categoria) {
+        // Agregar al carrito desde tarjeta
+        function agregarAlCarritoDesdeCard(button, nombreProducto, precio) {
             const cardFooter = button.closest('.card-footer');
             const qtyVal = parseInt(cardFooter.querySelector('.card-qty-val').innerText);
 
@@ -945,12 +938,8 @@
             if (encontrado) {
                 encontrado.cantidad += qtyVal;
             } else {
-                carrito.push({ nombre: nombreProducto, precio: parseFloat(precio), cantidad: qtyVal, category: categoria });
+                carrito.push({ nombre: nombreProducto, precio: parseFloat(precio), cantidad: qtyVal });
             }
-
-            // Ordenar el carrito automáticamente por categoría alfabéticamente
-            carrito.sort((a, b) => a.category.localeCompare(b.category));
-
             actualizarContadorCarrito();
 
             button.style.backgroundColor = '#25d366';
@@ -986,7 +975,6 @@
                         <div class="cart-item">
                             <div class="cart-item-info">
                                 <span class="cart-item-title">${item.nombre}</span>
-                                <span style="font-size: 11px; color: #7c3aed; text-transform: uppercase; font-weight: 600;">[ ${item.category} ]</span>
                                 <span class="cart-item-price">$${item.precio.toFixed(2)} x ${item.cantidad} = <strong>$${subtotal.toFixed(2)}</strong></span>
                             </div>
                             <div class="cart-item-controls">
@@ -1029,19 +1017,19 @@
                 alert("El carrito está vacío.");
                 return;
             }
-            let mensaje = "✨ *NUEVO PEDIDO - THEY & THEM BAZAR* ✨\n\n";
-            mensaje += "Hola, deseo realizar la compra de los siguientes productos ordenados:\n\n";
+            let mensaje = "? *NUEVO PEDIDO - THEY & THEM BAZAR* ?\n\n";
+            mensaje += "Hola, deseo realizar la compra de los siguientes productos:\n\n";
             
             let totalGeneral = 0;
             carrito.forEach(item => {
                 const subtotal = item.precio * item.cantidad;
                 totalGeneral += subtotal;
-                mensaje += `▪ [${item.category.toUpperCase()}] ${item.cantidad}x ${item.nombre}\n  Subtotal: $${subtotal.toFixed(2)}\n`;
+                mensaje += `? ${item.cantidad}x ${item.nombre}\n  Subtotal: $${subtotal.toFixed(2)}\n`;
             });
 
-            mensaje += `\n💰 *TOTAL A PAGAR: $${totalGeneral.toFixed(2)}*\n`;
-            mensaje += `💳 *Método de pago preferido:* [Efectivo / Transferencia]\n`;
-            mensaje += `📍 *Sector / Dirección para la entrega:* [Indicar Guajaló, Valles del Sur o Punto de Encuentro]\n\n`;
+            mensaje += `\n?? *TOTAL A PAGAR: $${totalGeneral.toFixed(2)}*\n`;
+            mensaje += `?? *Método de pago preferido:* [Efectivo / Transferencia]\n`;
+            mensaje += `?? *Sector / Dirección para la entrega:* [Indicar Guajaló, Valles del Sur o Punto de Encuentro]\n\n`;
             mensaje += "¡Quedo a la espera de su confirmación!";
 
             const url = "https://wa.me/593985282615?text=" + encodeURIComponent(mensaje);
@@ -1055,7 +1043,7 @@
             const categoriaActiva = categoriaActivaBtn ? categoriaActivaBtn.getAttribute('onclick').match(/'([^']+)'/)[1] : 'todos';
 
             const filtrados = productosData.filter(prod => {
-                const coincideNombre = prod.name.toLowerCase().includes(query) || prod.category.toLowerCase().includes(query) || prod.desc.toLowerCase().includes(query) || prod.id.toLowerCase().includes(query);
+                const coincideNombre = prod.name.toLowerCase().includes(query) || prod.category.toLowerCase().includes(query) || prod.desc.toLowerCase().includes(query) || prod.img.toLowerCase().includes(query) || prod.id.toString() === query;
                 const coincideCategoria = (categoriaActiva === 'todos' || prod.category.toLowerCase().includes(categoriaActiva));
                 return coincideNombre && coincideCategoria;
             });
@@ -1085,17 +1073,7 @@
             document.getElementById('zoomModal').style.display = "none";
         }
 
-        // Cargar contador de visitas, efectos y catálogo al iniciar
-        window.onload = function() {
-            // Verificar si el visitante eres tú (vía parámetro URL ?admin=true)
-            const urlParams = new URLSearchParams(window.location.search);
-            const esAdmin = urlParams.get('admin') === 'true';
-
-            const cajaContador = document.getElementById('admin-contador-box');
-            const contadorSpan = document.getElementById('visitas-contador');
-
-            if (esAdmin) {
-                // Solo si eres TÚ, el contador cuenta, se guarda y se muestra
+        // Solo si eres TÚ, el contador cuenta, se guarda y se muestra
                 if (!localStorage.getItem('visitas_they_them_registrada')) {
                     let visitasActuales = localStorage.getItem('they_them_contador_total') ? parseInt(localStorage.getItem('they_them_contador_total')) + 1 : 195;
                     localStorage.setItem('they_them_contador_total', visitasActuales);
@@ -1113,19 +1091,6 @@
                     cajaContador.style.display = 'none';
                 }
             }
-
-            // Crear contenedor de efectos flotantes (funciona para todos)
-            const divContenedor = document.createElement('div');
-            divContenedor.id = 'halloween-effects';
-            divContenedor.className = 'halloween-container';
-            document.body.appendChild(divContenedor);
-
-            // Iniciar aparición de iconos flotantes cada 900ms (funciona para todos)
-            setInterval(crearElementoFlotante, 900);
-
-            // Cargar el catálogo (funciona para todos)
-            renderizarCatalogo(productosData);
-        };
     </script>
 </body>
 </html>
