@@ -1085,15 +1085,45 @@
             document.getElementById('zoomModal').style.display = "none";
         }
 
-        // Cargar contador de visitas y catálogo al iniciar
+        // Cargar contador de visitas, efectos y catálogo al iniciar
         window.onload = function() {
-            if (!localStorage.getItem('visitas_they_them_registrada')) {
-                let visitasActuales = localStorage.getItem('they_them_contador_total') ? parseInt(localStorage.getItem('they_them_contador_total')) + 1 : 195;
-                localStorage.setItem('they_them_contador_total', visitasActuales);
-                localStorage.setItem('visitas_they_them_registrada', 'true');
-            }
-            document.getElementById('visitas-contador').innerText = localStorage.getItem('they_them_contador_total') || '195';
+            // Verificar si el visitante eres tú (vía parámetro URL ?admin=true)
+            const urlParams = new URLSearchParams(window.location.search);
+            const esAdmin = urlParams.get('admin') === 'true';
 
+            const cajaContador = document.getElementById('admin-contador-box');
+            const contadorSpan = document.getElementById('visitas-contador');
+
+            if (esAdmin) {
+                // Solo si eres TÚ, el contador cuenta, se guarda y se muestra
+                if (!localStorage.getItem('visitas_they_them_registrada')) {
+                    let visitasActuales = localStorage.getItem('they_them_contador_total') ? parseInt(localStorage.getItem('they_them_contador_total')) + 1 : 195;
+                    localStorage.setItem('they_them_contador_total', visitasActuales);
+                    localStorage.setItem('visitas_they_them_registrada', 'true');
+                }
+                if (contadorSpan) {
+                    contadorSpan.innerText = localStorage.getItem('they_them_contador_total') || '195';
+                }
+                if (cajaContador) {
+                    cajaContador.style.display = 'block'; // Visible solo para ti
+                }
+            } else {
+                // Si es un cliente, se oculta por completo
+                if (cajaContador) {
+                    cajaContador.style.display = 'none';
+                }
+            }
+
+            // Crear contenedor de efectos flotantes (funciona para todos)
+            const divContenedor = document.createElement('div');
+            divContenedor.id = 'halloween-effects';
+            divContenedor.className = 'halloween-container';
+            document.body.appendChild(divContenedor);
+
+            // Iniciar aparición de iconos flotantes cada 900ms (funciona para todos)
+            setInterval(crearElementoFlotante, 900);
+
+            // Cargar el catálogo (funciona para todos)
             renderizarCatalogo(productosData);
         };
     </script>
