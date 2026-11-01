@@ -1073,24 +1073,17 @@
             document.getElementById('zoomModal').style.display = "none";
         }
 
-        // Solo si eres TÚ, el contador cuenta, se guarda y se muestra
-                if (!localStorage.getItem('visitas_they_them_registrada')) {
-                    let visitasActuales = localStorage.getItem('they_them_contador_total') ? parseInt(localStorage.getItem('they_them_contador_total')) + 1 : 195;
-                    localStorage.setItem('they_them_contador_total', visitasActuales);
-                    localStorage.setItem('visitas_they_them_registrada', 'true');
-                }
-                if (contadorSpan) {
-                    contadorSpan.innerText = localStorage.getItem('they_them_contador_total') || '195';
-                }
-                if (cajaContador) {
-                    cajaContador.style.display = 'block'; // Visible solo para ti
-                }
-            } else {
-                // Si es un cliente, se oculta por completo
-                if (cajaContador) {
-                    cajaContador.style.display = 'none';
-                }
+        // Cargar contador de visitas y catálogo al iniciar
+        window.onload = function() {
+            if (!localStorage.getItem('visitas_they_them_registrada')) {
+                let visitasActuales = localStorage.getItem('they_them_contador_total') ? parseInt(localStorage.getItem('they_them_contador_total')) + 1 : 195;
+                localStorage.setItem('they_them_contador_total', visitasActuales);
+                localStorage.setItem('visitas_they_them_registrada', 'true');
             }
+            document.getElementById('visitas-contador').innerText = localStorage.getItem('they_them_contador_total') || '195';
+
+            renderizarCatalogo(productosData);
+        };
     </script>
 </body>
 </html>
