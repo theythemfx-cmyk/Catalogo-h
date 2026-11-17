@@ -120,14 +120,14 @@
     }
     .header-logo { width: 110px; height: auto; object-fit: contain; }
     .header-info h1 { font-size: 1.15rem; color: #ffffff; font-weight: 700; cursor: default; line-height: 1.2; }
-    .header-info p { display: none; } /* Oculto en móviles para ahorrar espacio, visible solo en tablets/PCs si se desea */
+    .header-info p { display: none; }
     @media (min-width: 768px) {
       .header-logo { width: 140px; }
       .header-info h1 { font-size: 1.35rem; }
       .header-info p { display: block; font-size: 0.8rem; color: #94a3b8; margin-top: 1px; }
     }
 
-    /* CONTENEDOR DESLIZABLE (CORRE JUNTO CON EL SCROLL) */
+    /* CONTENEDOR DESLIZABLE */
     .contenido-deslizable {
       max-width: 1200px;
       margin: 0 auto;
@@ -485,7 +485,9 @@
     .carrito-footer { padding: 18px; border-top: 1px solid #1e293b; background: #0b0f19; display: flex; flex-direction: column; gap: 10px; }
     .carrito-total { display: flex; justify-content: space-between; font-size: 1.1rem; font-weight: bold; color: #ffffff; }
 
-    footer { text-align: center; margin-top: 40px; color: var(--text-muted); font-size: 0.82rem; position: relative; z-index: 40; }
+    <footer>
+      <p>© 2026 THEY & THEM Bazar Novedades — Guajaló, Valles del Sur, Quito</p>
+    </footer>
   </style>
 </head>
 <body>
@@ -493,10 +495,9 @@
   <!-- CAPA DE LLUVIA ANIMADA POR DELANTE -->
   <div id="capa-particulas"></div>
 
-  <!-- ENCABEZADO FIJO: SOLO LOGOTIPO Y TÍTULO SE QUEDAN ESTÁTICOS -->
+  <!-- ENCABEZADO FIJO -->
   <div class="header-estatico-wrapper">
     <div id="banner-especial"></div>
-
     <header>
       <div class="header-main-container">
         <img src="img/logoi.png" alt="They & Them Bazar Novedades" class="header-logo" />
@@ -508,7 +509,7 @@
     </header>
   </div>
 
-  <!-- CONTENIDO DESLIZABLE (TARJETAS, BUSCADOR Y CATEGORÍAS CORREN JUNTO CON EL SCROLL) -->
+  <!-- CONTENIDO DESLIZABLE -->
   <div class="contenido-deslizable">
     <div class="header-cards-grid">
       <div class="info-card-box">
@@ -616,7 +617,7 @@
     <p>© 2026 THEY & THEM Bazar Novedades — Guajaló, Valles del Sur, Quito</p>
   </footer>
 
-  <!-- SCRIPT PRINCIPAL -->
+  <!-- SCRIPT PRINCIPAL UNIFICADO -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
     import { getDatabase, ref, set, update, onValue, increment } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
@@ -653,7 +654,7 @@
 
     const productosBase = [
       { id: "PER-H-001", category: "perfumes hombre", name: "DENDUR 75ML yanbal H", price: 27.99, img: "img/0013697.jpg", desc: "Un perfume para hombre ambarado especiado que te acompañará a recorrer kilómetros. Un perfume con notas especiadas de pimienta negra y jengibre, sobre toques ahumados de hojas de tabaco.", disponible: true },
-            { id: "PER-H-002", category: "perfumes hombre", name: "OSADIA LIMITED EDITION 75ML yanbal", price: 27.99, img: "img/0014191.jpg", desc: "Fragancia masculina intensa y sofisticada creada para hombres seguros, modernos y con actitud audaz. Su aroma combina notas frescas, especiadas y amaderadas que transmiten fuerza y elegancia.", disponible: true },
+                  { id: "PER-H-002", category: "perfumes hombre", name: "OSADIA LIMITED EDITION 75ML yanbal", price: 27.99, img: "img/0014191.jpg", desc: "Fragancia masculina intensa y sofisticada creada para hombres seguros, modernos y con actitud audaz. Su aroma combina notas frescas, especiadas y amaderadas que transmiten fuerza y elegancia.", disponible: true },
             { id: "PER-H-003", category: "perfumes hombre", name: "ZENTRO 75ML yanbal H", price: 29.99, img: "img/0012788.jpg", desc: "Perfume para hombre ambarado maderoso. Un aroma innovador y cautivador con notas cítricas de yuzu, cedro y el toque provocativo de haba tonka.", disponible: true },
             { id: "PER-H-004", category: "perfumes hombre", name: "L´ATTRACTION 100ML L´BEL", price: 24.99, img: "img/3503.jpg", desc: "Fragancia masculina herbal aromática creada para el hombre elegante, seguro de sí mismo y con una presencia que atrae todas las miradas. Su fórmula de alta concentración ofrece gran duración.", disponible: true },
             { id: "PER-H-005", category: "perfumes hombre", name: "KALOS SPORT 100ML ESIKA", price: 18.99, img: "img/3502.jpg", desc: "Fragancia de la familia olfativa Aromática para Hombres. Notas de salida: bergamota, limón y grosellas negras; notas de corazón: azucena y clavel; fondo: cedro y haba tonka.", disponible: true },
@@ -800,7 +801,8 @@
             { id: "HOG-50", category: "hogar", name: "LICUADORA DE INMERSION 3EN1 HOSTEIN", price: 22.99, img: "img/220046219.jpg", desc: "150 watts de potencia, ideal para mezclar, triturar y batir con facilidad. Su diseño versátil incluye accesorios para picar, batir y licuar, permitiendo preparar una variedad de recetas en poco tiempo. 2 velocidades, Cuchillas de acero inoxidable, Mango ergonómico de fácil sujeción, Varilla desmontable apta para lavavajillas.", disponible: true },
             { id: "HOG-51", category: "hogar", name: "LICUADORA UMCO 400W 1.5L", price: 29.99, img: "img/7861026907086.jpg", desc: "Prepara deliciosos jugos, batidos, salsas y más con la Licuadora Umco Modelo 0708 de 400 watts, diseñada para facilitar tus tareas diarias en la cocina. Cuenta con un vaso de gran capacidad de aproximadamente 1,5 litros, cuchillas de acero inoxidable de alta resistencia ideales para triturar hielo y diferentes velocidades que permiten obtener mezclas homogéneas en pocos segundos. Su potente motor de 400 W ofrece un excelente rendimiento para uso doméstico, mientras que su diseño moderno y funcional se adapta perfectamente a cualquier espacio. Además, incorpora sistema de protección para el motor, brindando mayor seguridad y durabilidad. ¡La aliada perfecta para preparar tus recetas favoritas todos los días", disponible: true },
             { id: "HOG-52", category: "hogar", name: "VAJILLA  16 PIEZAS BLANCA HOLSTEIN", price: 29.99, img: "img/810072408549.jpg", desc: "Cantidad de 16 piezas, fabricado en porcelana, apto para lavavajillas, diseñado para combinar un estilo moderno, texturas únicas y la máxima practicidad en tu día a día.", disponible: true },
-            { id: "HOG-53", category: "hogar", name: "LICUADORA DE INMERSIÓN UMCO", price: 27.99, img: "img/7861026907024.jpg", desc: "La Licuadora Eléctrica de Inmersión Umco CLASSIC es la herramienta ideal para quienes buscan versatilidad y eficiencia en la cocina. Con una potencia de 300 W y dos velocidades, permite preparar desde batidos cremosos hasta sopas y salsas con facilidad. Su diseño ergonómico facilita el manejo, haciendo que cada preparación sea rápida y sencilla.", disponible: true },    ];
+            { id: "HOG-53", category: "hogar", name: "LICUADORA DE INMERSIÓN UMCO", price: 27.99, img: "img/7861026907024.jpg", desc: "La Licuadora Eléctrica de Inmersión Umco CLASSIC es la herramienta ideal para quienes buscan versatilidad y eficiencia en la cocina. Con una potencia de 300 W y dos velocidades, permite preparar desde batidos cremosos hasta sopas y salsas con facilidad. Su diseño ergonómico facilita el manejo, haciendo que cada preparación sea rápida y sencilla.", disponible: true },
+    ];
 
     function construirCategorias() {
       const marcas = ["yanbal", "ésika", "l´bel", "avon", "cyzone", "boom", "accesorios", "tecnología", "promociones"];
@@ -901,6 +903,7 @@
     function obtenerEstadoProducto(prod, datosGuardados) {
       if (datosGuardados.estado) return datosGuardados.estado;
       if (datosGuardados.disponible === false) return "agotado";
+      if (prod.disponible === false) return "agotado";
       return prod.estado || "disponible";
     }
 
@@ -915,14 +918,15 @@
         const estadoActual = obtenerEstadoProducto(prod, datosNube);
 
         let coincideFiltro = false;
-        const catLimpia = filtroActual.replace(" (boom)", "");
+        const catLimpia = filtroActual.replace(" (boom)", "").toLowerCase().replace(/_/g, "-");
+        const catProdNormalizada = prod.category.toLowerCase().replace(/_/g, "-");
 
         if (filtroActual === "todos") {
           coincideFiltro = true;
         } else if (filtroActual === "promociones") {
-          coincideFiltro = Number(pAntes) > Number(pAhora) || estadoActual === "especial";
+          coincideFiltro = catProdNormalizada.includes("promociones") || Number(pAntes) > Number(pAhora) || estadoActual === "especial";
         } else {
-          coincideFiltro = prod.category.toLowerCase().includes(catLimpia) || prod.name.toLowerCase().includes(catLimpia);
+          coincideFiltro = catProdNormalizada.includes(catLimpia) || prod.name.toLowerCase().includes(catLimpia);
         }
 
         const coincideTexto = prod.name.toLowerCase().includes(textoBusqueda) || prod.desc.toLowerCase().includes(textoBusqueda) || prod.id.toLowerCase().includes(textoBusqueda);
